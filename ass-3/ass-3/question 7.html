@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Text Customization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        p {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customize Paragraph Text</h1>
+    
+    <label for="fontType">Select Font Type: </label>
+    <select id="fontType" onchange="changeFontType()">
+        <option value="Arial">Arial</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Verdana">Verdana</option>
+    </select>
+
+    <br><br>
+
+    <label for="fontSize">Select Font Size: </label>
+    <select id="fontSize" onchange="changeFontSize()">
+        <option value="16px">16px</option>
+        <option value="18px">18px</option>
+        <option value="20px">20px</option>
+        <option value="24px">24px</option>
+        <option value="28px">28px</option>
+    </select>
+
+    <br><br>
+
+    <label for="textColor">Select Text Color: </label>
+    <input type="color" id="textColor" value="#000000" onchange="changeTextColor()">
+
+    <h2>Sample Paragraph</h2>
+    <p id="customParagraph">This is a sample paragraph. You can customize its font type, size, and color using the options above.</p>
+
+    <script>
+        function changeFontType() {
+            const fontType = document.getElementById('fontType').value;
+            const paragraph = document.getElementById('customParagraph');
+            paragraph.style.fontFamily = fontType;
+        }
+
+        function changeFontSize() {
+            const fontSize = document.getElementById('fontSize').value;
+            const paragraph = document.getElementById('customParagraph');
+            paragraph.style.fontSize = fontSize;
+        }
+
+        function changeTextColor() {
+            const textColor = document.getElementById('textColor').value;
+            const paragraph = document.getElementById('customParagraph');
+            paragraph.style.color = textColor;
+        }
+    </script>
+</body>
+</html>

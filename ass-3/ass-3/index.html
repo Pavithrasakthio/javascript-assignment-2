@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start and Stop Counter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="counter-container">
+        <h1>Counter</h1>
+        <div id="counter">0</div>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+    </div>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+.counter-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+#counter {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #333;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+
+    <script>
+        let counterValue = 0;
+        let intervalId = null;
+function updateCounter() {
+    const counterDisplay = document.getElementById('counter');
+    counterDisplay.textContent = counterValue;
+}
+function startCounter() {
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            counterValue++;
+            updateCounter();
+        }, 1000);
+    }
+}
+function stopCounter() {
+    clearInterval(intervalId);
+    intervalId = null;
+}
+document.getElementById('startBtn').addEventListener('click', startCounter);
+document.getElementById('stopBtn').addEventListener('click', stopCounter);
+
+    </script>
+
+</body>
+</html>

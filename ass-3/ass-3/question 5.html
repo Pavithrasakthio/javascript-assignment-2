@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Roll Number Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Roll Number Information</h1>
+    <input type="text" id="rollNumberInput" placeholder="Enter Roll Number">
+    <button onclick="getStudentInfo()">Get Student Info</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function getStudentInfo() {
+            const rollNumber = document.getElementById('rollNumberInput').value;
+            const resultDiv = document.getElementById('result');
+            const regex = /^ES(\d{2})([A-Z]{2})(\d{2})$/;
+
+            const match = rollNumber.match(regex);
+            if (match) {
+                const yearCode = match[1];
+                const branchCode = match[2];
+
+                let year;
+                if (yearCode === '19') {
+                    year = 'Final Year';
+                } else if (yearCode === '20') {
+                    year = 'Third Year';
+                } else if (yearCode === '21') {
+                    year = 'Second Year';
+                } else if (yearCode === '22') {
+                    year = 'First Year';
+                } else {
+                    year = 'Unknown Year';
+                }
+
+                let branch;
+                if (branchCode === 'CS') {
+                    branch = 'Computer Science Engineering';
+                } else if (branchCode === 'EC') {
+                    branch = 'Electronics and Communication';
+                } else {
+                    branch = 'Unknown Branch';
+                }
+
+                resultDiv.innerHTML = `Student belongs to ${year} ${branch}.`;
+            } else {
+                resultDiv.innerHTML = "Invalid roll number format. Please use the format ESYYXXNN.";
+            }
+        }
+    </script>
+</body>
+</html>

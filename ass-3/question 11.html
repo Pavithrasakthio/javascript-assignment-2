@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Between Dates Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Calculate Days Between Two Dates</h1>
+<label for="startDate">Start Date:</label>
+<input type="date" id="startDate">
+
+<label for="endDate">End Date:</label>
+<input type="date" id="endDate">
+
+<button onclick="calculateDays()">Calculate Days</button>
+<div id="result"></div>
+
+<script>
+    function calculateDays() {
+        const startDateInput = document.getElementById('startDate').value;
+        const endDateInput = document.getElementById('endDate').value;
+        const resultDiv = document.getElementById('result');
+
+        if (!startDateInput || !endDateInput) {
+            resultDiv.innerText = "Please select both dates.";
+            return;
+        }
+
+        const startDate = new Date(startDateInput);
+        const endDate = new Date(endDateInput);
+        if (endDate < startDate) {
+            resultDiv.innerText = "End date must be after the start date.";
+            return;
+        }
+
+        const timeDiff = endDate - startDate;
+        const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+        resultDiv.innerText = `Number of days between the two dates: ${daysDiff} day(s).`;
+    }
+</script>
+
+</body>
+</html>

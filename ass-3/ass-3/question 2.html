@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Box Operations</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Combo Box Operations</h1>
+        <select id="itemComboBox">
+            <option value="" disabled selected>Select an item</option>
+        </select>
+        <br><br>
+
+        <input type="text" id="newItem" placeholder="Enter new item">
+        <button id="addItemBtn">Add Item</button>
+        <button id="removeItemBtn">Remove Item</button>
+        <button id="displayItemBtn">Display Selected Item</button>
+        
+        <h2 id="selectedItemDisplay"></h2>
+    </div>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+.container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    color: #333;
+}
+
+    </style>
+
+    <script>
+function addItem() {
+    const newItemInput = document.getElementById('newItem');
+    const itemComboBox = document.getElementById('itemComboBox');
+
+    const newItemValue = newItemInput.value.trim();
+    
+    if (newItemValue) {
+        const newOption = document.createElement('option');
+        newOption.value = newItemValue;
+        newOption.textContent = newItemValue;
+        itemComboBox.appendChild(newOption);
+        newItemInput.value = '';
+    } else {
+        alert("Please enter a valid item.");
+    }
+}
+function removeItem() {
+    const itemComboBox = document.getElementById('itemComboBox');
+    const selectedIndex = itemComboBox.selectedIndex;
+
+    if (selectedIndex > 0) {
+        itemComboBox.remove(selectedIndex);
+    } else {
+        alert("Please select an item to remove.");
+    }
+}
+function displaySelectedItem() {
+    const itemComboBox = document.getElementById('itemComboBox');
+    const selectedItemDisplay = document.getElementById('selectedItemDisplay');
+    
+    const selectedIndex = itemComboBox.selectedIndex;
+
+    if (selectedIndex > 0) {
+        selectedItemDisplay.textContent = `Selected Item: ${itemComboBox.options[selectedIndex].text}`;
+    } else {
+        selectedItemDisplay.textContent = "No item selected.";
+    }
+}
+document.getElementById('addItemBtn').addEventListener('click', addItem);
+document.getElementById('removeItemBtn').addEventListener('click', removeItem);
+document.getElementById('displayItemBtn').addEventListener('click', displaySelectedItem);
+
+    </script>
+</body>
+</html>

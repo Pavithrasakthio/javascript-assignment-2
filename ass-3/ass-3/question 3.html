@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Analyzer</h1>
+    <textarea id="textInput" placeholder="Enter your text here"></textarea>
+    <br>
+    <label for="bgColor">Select Background Color: </label>
+    <input type="color" id="bgColor" value="#ffffff" onchange="changeColor()">
+    <label for="fgColor">Select Text Color: </label>
+    <input type="color" id="fgColor" value="#000000" onchange="changeColor()">
+    <button onclick="analyzeText()">Analyze Text</button>
+
+    <h2>Results</h2>
+    <p>Number of Alphabets: <span id="alphabetCount">0</span></p>
+    <p>Number of Digits: <span id="digitCount">0</span></p>
+    <p>Number of Special Characters: <span id="specialCharCount">0</span></p>
+
+    <script>
+        function analyzeText() {
+            const text = document.getElementById('textInput').value;
+            let alphabets = 0, digits = 0, specialChars = 0;
+
+            for (let char of text) {
+                if (/[a-zA-Z]/.test(char)) {
+                    alphabets++;
+                } else if (/\d/.test(char)) {
+                    digits++;
+                } else if (/\W/.test(char) && char !== ' ') {
+                    specialChars++;
+                }
+            }
+
+            document.getElementById('alphabetCount').innerText = alphabets;
+            document.getElementById('digitCount').innerText = digits;
+            document.getElementById('specialCharCount').innerText = specialChars;
+        }
+
+        function changeColor() {
+            const bgColor = document.getElementById('bgColor').value;
+            const fgColor = document.getElementById('fgColor').value;
+            const textArea = document.getElementById('textInput');
+
+            textArea.style.backgroundColor = bgColor;
+            textArea.style.color = fgColor;
+        }
+    </script>
+</body>
+</html>
